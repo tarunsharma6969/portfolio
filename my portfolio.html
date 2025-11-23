@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Tarun Sharma — Portfolio</title>
+  <style>
+    :root{
+      --primary:#0056b3;
+      --accent:#ff6a3d;
+      --muted:#6c757d;
+      --bg:#ffffff;
+      --card:#ffffff;
+      --radius:12px;
+      --maxw:1100px;
+    }
+
+    *{box-sizing:border-box;margin:0;padding:0;font-family:Inter, system-ui, Arial, sans-serif}
+    html{scroll-behavior:smooth}
+    body{background:var(--bg);color:#111;line-height:1.5;padding-top:72px}
+
+    .container{max-width:var(--maxw);margin:0 auto;padding:1rem}
+
+    header{
+      position:fixed;top:0;left:0;right:0;height:72px;
+      background:linear-gradient(180deg,var(--primary),#004a97);
+      color:#fff;display:flex;align-items:center;justify-content:space-between;padding:0 1rem;z-index:1200;
+      box-shadow:0 6px 18px rgba(0,0,0,0.08);
+    }
+    .brand{display:flex;align-items:center;gap:.75rem}
+    .brand img{width:40px;height:40px;border-radius:8px;object-fit:cover}
+    .brand h1{font-size:1rem}
+    nav{display:flex;align-items:center;gap:1rem}
+    nav a{color:#fff;text-decoration:none;font-weight:600;padding:.45rem .6rem;border-radius:8px}
+    nav a:hover{background:rgba(255,255,255,0.07)}
+
+    .menu-btn{display:none;background:transparent;border:0;color:#fff;font-size:1.4rem;cursor:pointer;padding:.4rem}
+
+    /* HERO */
+    .hero{display:flex;gap:2rem;align-items:center;justify-content:space-between;margin-top:1.25rem;padding:2rem 0}
+    .hero-text h1{font-size:2rem}
+    .title-animated{
+      font-size:1.6rem;
+      display:inline-block;
+      animation: colorCycle 3s linear infinite;
+      margin-top:.6rem;
+      font-weight:700;
+    }
+    @keyframes colorCycle{
+      0%   { color: red; }
+      33%  { color: green; }
+      66%  { color: blue; }
+      100% { color: red; }
+    }
+
+    .hero-text p{color:var(--muted);margin-top:.6rem;max-width:58ch}
+
+    .hero-img{width:340px;max-width:40%;border-radius:16px;padding:1rem;display:flex;align-items:center;justify-content:center;box-shadow:0 10px 30px rgba(0,0,0,0.06)}
+    .hero-img img{width:100%;height:auto;border-radius:10px;display:block}
+
+    section{padding:2.5rem 0}
+    .section-title{font-size:1.35rem;margin-bottom:.75rem}
+    .lead{color:var(--muted)}
+
+    /* Skills */
+    .skills-grid{display:flex;gap:1rem;flex-wrap:wrap}
+    .skill{
+      background:#fff;border:2px solid rgba(0,0,0,0.06);
+      color:#111;padding:1rem;border-radius:10px;min-width:160px;text-align:center;font-weight:700;
+      transition: transform .18s ease, color .12s ease, box-shadow .18s ease;
+      cursor:pointer;
+    }
+    .skill small{display:block;font-weight:400;margin-top:6px;color:var(--muted)}
+
+    @keyframes bounceHover {
+      0%   { transform: translateY(0); }
+      30%  { transform: translateY(-10px); }
+      60%  { transform: translateY(3px); }
+      100% { transform: translateY(0); }
+    }
+    .skill:hover{
+      animation: bounceHover .6s ease;
+      color: red;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.08);
+    }
+
+    /* Projects */
+    .projects{display:grid;grid-template-columns:repeat(2,1fr);gap:1rem}
+    .project{background:var(--card);border-radius:var(--radius);padding:0;overflow:hidden;box-shadow:0 6px 18px rgba(0,0,0,0.06);display:flex;flex-direction:column}
+    .project img{width:100%;height:220px;object-fit:cover;display:block}
+    .project-content{padding:1rem}
+    .project h3{margin-bottom:.25rem;font-size:1.05rem}
+    .project p{color:var(--muted);font-size:.95rem}
+
+    /* Contact */
+    .contact-wrap{
+      display:flex;
+      gap:2rem;
+      align-items:flex-start;
+      flex-wrap:wrap;
+      justify-content:center;
+    }
+    form{
+      background:var(--card);padding:1rem;border-radius:12px;box-shadow:0 6px 18px rgba(0,0,0,0.05);
+      min-width:280px;max-width:420px;width:100%;
+    }
+    label{display:block;font-weight:700;margin-top:.5rem}
+    input,textarea{width:100%;padding:.6rem;margin-top:.4rem;border:1px solid #cfcfcf;border-radius:8px;font-size:.95rem}
+    button.primary{background:var(--primary);color:#fff;border:0;padding:.7rem 1rem;border-radius:8px;font-weight:700;margin-top:.6rem;cursor:pointer;width:100%}
+
+    .note{color:var(--muted);font-size:.95rem;margin-top:.5rem;text-align:center}
+
+    footer{padding:1.25rem 0;text-align:center;color:#fff;background:linear-gradient(180deg,var(--primary),#003a78);margin-top:1.5rem}
+
+    .back-top{position:fixed;right:20px;bottom:20px;background:var(--primary);color:#fff;padding:.6rem .8rem;border-radius:9px;box-shadow:0 8px 18px rgba(0,0,0,0.12);text-decoration:none;display:inline-flex;align-items:center;gap:.5rem;transform:translateY(8px);opacity:0;visibility:hidden;transition:all .25s ease}
+    .back-top.show{opacity:1;visibility:visible;transform:none}
+
+    /* Responsive */
+    @media (max-width:900px){ .projects{grid-template-columns:1fr} .hero{flex-direction:column;align-items:flex-start} .hero-img{max-width:320px;width:100%} }
+    @media (max-width:720px){ nav{display:none} .menu-btn{display:inline-block} header .container{display:flex;align-items:center;justify-content:space-between} }
+
+    .mobile-nav{position:fixed;inset:72px 0 0 0;background:linear-gradient(180deg,rgba(0,0,0,0.6),rgba(0,0,0,0.55));display:none;z-index:1100;padding:1rem}
+    .mobile-nav.open{display:block}
+    .mobile-nav a{display:block;color:#fff;padding:1rem;border-radius:8px;text-decoration:none}
+
+    a:focus,button:focus,input:focus,textarea:focus{outline:3px solid rgba(0,86,179,0.15);outline-offset:3px}
+  </style>
+</head>
+<body id="top">
+  <header>
+    <div style="display:flex;align-items:center;justify-content:space-between;width:100%;max-width:var(--maxw);margin:0 auto;padding:0 1rem">
+      <div class="brand" aria-hidden="false">
+        <img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" alt="Profile" />
+        <h1 style="font-size:1rem">Tarun Sharma</h1>
+      </div>
+
+      <nav aria-label="Primary navigation">
+        <a href="#about">About</a>
+        <a href="#skills">Skills</a>
+        <a href="#projects">Projects</a>
+        <a href="#contact">Contact</a>
+      </nav>
+
+      <button class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="mobileNav" aria-label="Toggle menu">☰</button>
+    </div>
+
+    <div id="mobileNav" class="mobile-nav" role="navigation" aria-hidden="true">
+      <div style="max-width:var(--maxw);margin:0 auto;">
+        <a href="#about" onclick="closeMobileNav()">About</a>
+        <a href="#skills" onclick="closeMobileNav()">Skills</a>
+        <a href="#projects" onclick="closeMobileNav()">Projects</a>
+        <a href="#contact" onclick="closeMobileNav()">Contact</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <main class="container">
+    <section class="hero" aria-labelledby="hero-heading">
+      <div class="hero-text">
+        <h1 id="hero-heading">Hi, I am <strong>Tarun Sharma</strong></h1>
+        <div class="title-animated" aria-hidden="false">Full Stack Developer</div>
+        <p class="lead">Building modern web applications with help of my teachers. I enjoy learning new technologies and building projects that solve real problems.</p>
+        <p style="margin-top:1rem"><a href="#projects" style="text-decoration:none;background:var(--accent);color:#fff;padding:.5rem .8rem;border-radius:8px;font-weight:700;">View Projects →</a></p>
+      </div>
+
+      <div class="hero-img" aria-hidden="false">
+        <img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" alt="Profile" />
+      </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="about" aria-labelledby="about-title">
+      <h2 id="about-title" class="section-title">About Me</h2>
+      <p class="lead">Hello! My name is Tarun Sharma and I am currently learning web development. I am a student at KR Mangalam University pursuing a B.Tech degree. I enjoy exploring new skills daily and aim to build creative, responsive projects that make an impact.</p>
+    </section>
+
+    <!-- SKILLS -->
+    <section id="skills" aria-labelledby="skills-title">
+      <h2 id="skills-title" class="section-title">My Skills</h2>
+      <div class="skills-grid" role="list">
+        <div class="skill" role="listitem">HTML <small>Beginner</small></div>
+        <div class="skill" role="listitem">CSS <small>Beginner</small></div>
+        <div class="skill" role="listitem">JavaScript <small>Learning</small></div>
+      </div>
+    </section>
+
+    <!-- PROJECTS -->
+    <section id="projects" aria-labelledby="projects-title">
+      <h2 id="projects-title" class="section-title">My Projects</h2>
+
+      <div class="projects" role="list">
+        <article class="project" role="listitem" aria-labelledby="p1">
+          <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1200&q=70" alt="Project 1" />
+          <div class="project-content">
+            <h3 id="p1">Responsive Landing Page</h3>
+            <p>Modern landing page built with semantic HTML & responsive CSS.</p>
+          </div>
+        </article>
+
+        
+
+        <article class="project" role="listitem" aria-labelledby="p2">
+          <img src="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&w=1200&q=70" alt="Project 2" />
+          <div class="project-content">
+            <h3 id="p2">JavaScript Mini Apps</h3>
+            <p>Small JS projects: todo app, calculator and weather UI components.</p>
+          </div>
+        
+        
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact" aria-labelledby="contact-title">
+      <h2 id="contact-title" class="section-title">Contact Me</h2>
+
+      <div class="contact-wrap">
+        <form id="contactForm" aria-label="Contact form">
+          <label for="name">Name</label>
+          <input id="name" name="name" type="text" placeholder="Enter your name" required />
+
+          <label for="email">Email</label>
+          <input id="email" name="email" type="email" placeholder="Enter your email" required />
+
+          <label for="message">Message</label>
+          <textarea id="message" name="message" rows="5" placeholder="Write your message" required></textarea>
+
+          <button class="primary" type="submit">Send Message</button>
+        </form>
+
+        <aside aria-label="Contact details" style="min-width:240px;max-width:320px;">
+          <div style="background:var(--card);padding:1rem;border-radius:12px;box-shadow:0 6px 18px rgba(0,0,0,0.05);text-align:center">
+            <h3 style="margin-bottom:.5rem">Let's connect</h3>
+            <p class="lead" style="margin-bottom:.5rem">KR Mangalam University — B.Tech</p>
+            <p style="color:var(--muted);font-size:.95rem">Email: <a href="mailto:tarun@example.com">tarun@example.com</a></p>
+          </div>
+        </aside>
+      </div>
+
+      <p class="note">Replace email and images with your own when ready.</p>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <p>© <span id="year"></span> Tarun Sharma — Built with ❤️</p>
+    </div>
+  </footer>
+
+  <a href="#top" class="back-top" id="backTop" aria-label="Back to top">↑ Top</a>
+
+  <script>
+    const menuBtn = document.getElementById('menuBtn');
+    const mobileNav = document.getElementById('mobileNav');
+    function closeMobileNav(){ menuBtn.setAttribute('aria-expanded','false'); mobileNav.classList.remove('open'); mobileNav.setAttribute('aria-hidden','true'); }
+    if (menuBtn) {
+      menuBtn.addEventListener('click', () => {
+        const open = mobileNav.classList.toggle('open');
+        menuBtn.setAttribute('aria-expanded', String(open));
+        mobileNav.setAttribute('aria-hidden', String(!open));
+      });
+    }
+
+    const backTop = document.getElementById('backTop');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > window.innerHeight / 2) backTop.classList.add('show');
+      else backTop.classList.remove('show');
+    });
+
+    document.getElementById('contactForm').addEventListener('submit', function(e){
+      e.preventDefault();
+      const name = document.getElementById('name').value.trim();
+      alert('Thanks, ' + (name || 'there') + '! Your message was received (demo).');
+      this.reset();
+    });
+
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    document.addEventListener('click', (e) => {
+      if (!mobileNav.contains(e.target) && !menuBtn.contains(e.target)) closeMobileNav();
+    });
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeMobileNav(); });
+  </script>
+</body>
+</html>
